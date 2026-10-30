@@ -346,6 +346,12 @@ MinIO is an independent AGPL-3.0 component and is not covered by this project's 
 
 ---
 
+## Related projects
+
+- [微桥 WeChat Agent Router](https://github.com/Wing233/wechat-agent-router) — turn WeChat into a remote control for AI agents on multiple computers
+
+---
+
 ## Acknowledgements
 
 - [Next.js](https://nextjs.org/) / [React](https://react.dev/) / [Tailwind CSS](https://tailwindcss.com/)

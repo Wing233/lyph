@@ -498,6 +498,12 @@ MinIO 是独立的 AGPL-3.0 组件，不适用本项目的 MIT 授权；详见 [
 
 ---
 
+## 相关项目
+
+- [微桥 WeChat Agent Router](https://github.com/Wing233/wechat-agent-router) — 把微信变成多台电脑上 AI Agent 的遥控器
+
+---
+
 ## 致谢
 
 - [Next.js](https://nextjs.org/) / [React](https://react.dev/) / [Tailwind CSS](https://tailwindcss.com/)
