@@ -15,6 +15,7 @@
 [![Rust](https://img.shields.io/badge/Rust-1.95-000000?logo=rust&logoColor=white)](https://www.rust-lang.org/)
 [![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)](https://docs.docker.com/compose/)
 [![License](https://img.shields.io/badge/License-MIT-2dd4bf.svg)](LICENSE)
+[![CI](https://github.com/Wing233/lyph/actions/workflows/ci.yml/badge.svg)](https://github.com/Wing233/lyph/actions/workflows/ci.yml)
 
 [快速开始](#快速开始) · [架构](#架构) · [配置](#配置) · [部署](#部署) · [隐私](#隐私与数据) · [开发](#开发)
 
