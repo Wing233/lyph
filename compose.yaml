@@ -1,0 +1,90 @@
+name: lyph
+services:
+  minio:
+    image: lyph-minio:7aac2a2c5b7c
+    build:
+      context: .
+      dockerfile: deploy/Minio.Dockerfile
+    environment:
+      MINIO_ROOT_USER: ${LYPH_MINIO_ACCESS_KEY:?请先生成本地配置}
+      MINIO_ROOT_PASSWORD: ${LYPH_MINIO_SECRET_KEY:?请先生成本地配置}
+      GOMEMLIMIT: 192MiB
+    volumes: ["objects:/data"]
+    networks: [private]
+    mem_limit: 256m
+    cpus: 0.5
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "http://localhost:9000/minio/health/live"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+  api:
+    image: lyph-api:0.1.0
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    env_file: .env
+    environment:
+      LYPH_DATA_DIR: /data
+      LYPH_DATABASE_PATH: /data/lyph.sqlite3
+      LYPH_MINIO_ENDPOINT: minio:9000
+      LYPH_MINIO_SECURE: "false"
+      LYPH_SOURCE_DIR: /source/web
+      LYPH_UI_DIR: /ui
+      FORWARDED_ALLOW_IPS: ${LYPH_PROXY_IP:-172.30.91.254}
+    volumes: ["business:/data", "ui:/ui", "./web:/source/web:ro"]
+    depends_on:
+      minio: {condition: service_healthy}
+    networks:
+      private: {aliases: [api-internal]}
+      egress: {}
+      preview: {}
+    mem_limit: 384m
+    cpus: 0.75
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://localhost:8000/health',timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+  web:
+    image: lyph-web:0.1.0
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+    environment: {API_BASE_URL: "http://api:8000", NODE_OPTIONS: "--max-old-space-size=384", LYPH_CHAT_FIRST_ENABLED: "${LYPH_CHAT_FIRST_ENABLED:-false}", LYPH_PUBLIC_ORIGIN: "${LYPH_FRONTEND_ORIGIN:-http://localhost:3000}"}
+    volumes: ["ui:/ui:ro"]
+    read_only: true
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=32m"]
+    depends_on:
+      api: {condition: service_healthy}
+    networks: [private]
+    mem_limit: 512m
+    cpus: 0.5
+    restart: unless-stopped
+  nginx:
+    image: nginx:1.28-alpine@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236
+    ports: ["${LYPH_BIND_ADDRESS:-127.0.0.1}:${LYPH_HTTP_PORT:-8080}:8080"]
+    volumes:
+      - ./deploy/nginx.conf:/etc/nginx/nginx.conf:ro
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=16m"]
+    depends_on: [web]
+    networks:
+      private:
+        ipv4_address: ${LYPH_PROXY_IP:-172.30.91.254}
+      egress: {}
+    mem_limit: 32m
+    cpus: 0.25
+    restart: unless-stopped
+networks:
+  private:
+    internal: true
+    ipam:
+      config: [{subnet: "${LYPH_PRIVATE_SUBNET:-172.30.91.0/24}"}]
+  egress: {}
+  preview: {internal: true}
+volumes:
+  business: {}
+  objects: {}
+  ui: {}

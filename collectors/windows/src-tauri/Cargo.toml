@@ -1,0 +1,21 @@
+[package]
+name = "lyph-collector-windows"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "lyph-desktop"
+path = "src/main.rs"
+
+[target.'cfg(windows)'.dependencies]
+lyph-collector-core = { path = "../../core", features = ["screen-capture"] }
+anyhow.workspace = true
+chrono.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tauri = "=2.12.1"
+
+[target.'cfg(windows)'.build-dependencies]
+tauri-build = "=2.7.1"

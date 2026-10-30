@@ -1,0 +1,12 @@
+[Unit]
+Description=Check lyph certificate renewal every twelve hours
+
+[Timer]
+OnCalendar=*-*-* 00,12:00:00
+RandomizedDelaySec=10min
+AccuracySec=1min
+Persistent=true
+Unit=lyph-certificate-renew.service
+
+[Install]
+WantedBy=timers.target

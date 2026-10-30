@@ -1,0 +1,21 @@
+# OPTIONAL AND HIGH RISK: mounts the host Docker socket into the API.
+# Only enable in a trusted environment; never expose it to the public internet.
+# Only enable after a passing 24h aggregate 2GiB capacity report.
+services:
+  api:
+    group_add: ["${LYPH_DOCKER_GID:-0}"]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./runtime/capacity-report.json:/reports/capacity.json:ro
+    environment:
+      LYPH_UI_CAPACITY_REPORT: /reports/capacity.json
+      LYPH_UI_VOLUME: lyph_ui
+      LYPH_UI_NETWORK: lyph_preview
+      LYPH_UI_RUNNER_IMAGE: lyph-web-build:0.1.0
+  ui-dependencies:
+    profiles: [ui-build]
+    image: lyph-web-build:0.1.0
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+      target: dependencies

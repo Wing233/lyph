@@ -1,0 +1,19 @@
+name: Feature request
+description: 提一个功能建议
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 想解决什么问题
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: 建议方案
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 替代方案

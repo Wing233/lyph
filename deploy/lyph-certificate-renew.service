@@ -1,0 +1,21 @@
+[Unit]
+Description=Renew lyph public IP TLS certificate
+Wants=network-online.target
+Requires=docker.service
+After=network-online.target docker.service
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/opt/lyph
+EnvironmentFile=-/opt/lyph/.env
+Environment=LYPH_CERT_NAME=your-domain.example
+ExecStart=/bin/sh /opt/lyph/deploy/renew-certificate.sh
+TimeoutStartSec=30min
+UMask=0077
+Nice=10
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/etc/letsencrypt /var/lib/letsencrypt /var/log/letsencrypt /opt/lyph/runtime

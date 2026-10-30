@@ -1,0 +1,11 @@
+{
+  "verified_at": "2026-10-05",
+  "node": "node:22-alpine@sha256:0a7108bf6c7bf5de370ffb1a3ed6be93d405b43ff159f681a8d18c0e2bc2e402",
+  "python": "python:3.13-slim@sha256:bb2988715db2cf7ace7b53f38f3cffbef7c7046a656bee66245eb0ed386e2e81",
+  "nginx": "nginx:1.28-alpine@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236",
+  "golang": "golang:1.26-alpine@sha256:8ac98ca534ac3f51e1f420a1dd2c15e74c75cfa0f23f3ad27eb5d7236c349a0c",
+  "alpine": "alpine:3.22@sha256:5291449c3df73caf6ed85e649dec1b9e818b39a5d8c871e97afc13e9cd5e8fa8",
+  "minio_source": "7aac2a2c5b7c882e68c1ce017d8256be2feea27f",
+  "minio_built_digest": "sha256:e4d9352c1055bfc2b55b732fc88c6ee570b148fb083381fcbd6c47334ec59cff",
+  "note": "MinIO由固定源码构建，digest来自本机OCI image Descriptor与RepoDigests。异机构建需核验产物并显式更新，不允许自动跟随latest。"
+}

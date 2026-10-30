@@ -1,0 +1,9 @@
+node_modules/
+.next/
+*.tsbuildinfo
+test-results/
+playwright-report/
+tests/results/screenshots/
+tests/results/*-before.json
+.env*
+!.env.example

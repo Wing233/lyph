@@ -1,0 +1,40 @@
+name: Bug report
+description: 报告一个可复现的问题
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请先删除日志/截图中的 API Key、Cookie、访客数据、服务器地址。
+  - type: textarea
+    id: what
+    attributes:
+      label: 发生了什么
+      description: 实际行为 + 期望行为
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: 模块
+      options: [api, web, collectors, deploy, docs]
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: 版本 / commit
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 脱敏日志
+      render: shell

@@ -1,0 +1,48 @@
+{
+  "name": "lyph-web",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev --hostname 0.0.0.0",
+    "build": "next build",
+    "start": "next start --hostname 0.0.0.0",
+    "typecheck": "tsc --noEmit",
+    "test:e2e": "playwright test",
+    "lint": "eslint app components lib next.config.ts",
+    "format": "prettier --write app components lib next.config.ts postcss.config.mjs"
+  },
+  "dependencies": {
+    "@assistant-ui/react": "0.15.31",
+    "@radix-ui/react-dialog": "1.1.23",
+    "@tailwindcss/postcss": "4.3.3",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "idb": "8.0.3",
+    "lucide-react": "0.577.0",
+    "next": "15.5.28",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-markdown": "10.1.0",
+    "rehype-sanitize": "6.0.0",
+    "remark-gfm": "4.0.1",
+    "tailwind-merge": "3.4.0",
+    "tailwindcss": "4.3.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.63.0",
+    "@types/node": "24.10.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.2.3",
+    "eslint": "10.12.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "17.4.0",
+    "prettier": "3.6.2",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.71.0"
+  },
+  "overrides": {
+    "postcss": "8.5.28"
+  }
+}

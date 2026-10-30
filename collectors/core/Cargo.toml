@@ -1,0 +1,25 @@
+[package]
+name = "lyph-collector-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[features]
+default = []
+screen-capture = ["dep:xcap", "dep:image"]
+
+[dependencies]
+anyhow.workspace = true
+chrono.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+uuid.workspace = true
+rusqlite.workspace = true
+reqwest.workspace = true
+sha2.workspace = true
+xcap = { workspace = true, optional = true }
+image = { workspace = true, optional = true }
+
+[dev-dependencies]
+tempfile.workspace = true

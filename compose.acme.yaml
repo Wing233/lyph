@@ -1,0 +1,7 @@
+# First certificate only: the HTTP listener serves ACME challenges, no app or login.
+services:
+  nginx:
+    ports: !override ["${LYPH_BIND_ADDRESS:-0.0.0.0}:80:8080"]
+    volumes:
+      - ./deploy/nginx-acme.conf:/etc/nginx/nginx.conf:ro
+      - ./runtime/acme:/var/www/acme:ro

@@ -1,0 +1,5 @@
+/target/
+/windows/node_modules/
+/windows/dist/
+*.sqlite3*
+config.json

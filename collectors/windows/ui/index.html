@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>lyph · 采集台</title><link rel="stylesheet" href="style.css"></head>
+<body><main>
+<header><span class="brand">lyph<span class="dot">.</span></span><span class="label">WINDOWS / 采集台</span><span id="state" class="badge" role="status">未启动</span></header>
+<section class="intro"><p class="eyebrow">留下一天的线索</p><h1>生活在发生，<br>记录慢慢积累。</h1><p>启动后默认每5分钟截取主屏。截图先保存在本机，收到服务端确认后清理；缓存满时暂停新增采集。</p></section>
+<form id="pairing" class="panel"><h2>配对设备</h2><label>站点地址<input name="base_url" type="url" placeholder="https://your-site.example" required></label><label>后台签发的独立设备凭证<input name="device_token" type="password" autocomplete="off" required></label><button type="submit">保存配对</button><p class="hint">设备凭证只保存至Rust管理的当前用户目录，不进入网页存储或日志。</p></form>
+<section class="metrics"><div><strong id="pending">0</strong><span>待上传</span></div><div><strong id="confirmed">0</strong><span>已确认 · 近30天</span></div><div><strong id="cache">0 MiB</strong><span>本地缓存 / 1 GiB</span></div></section>
+<section class="panel"><h2>采集状态</h2><p id="capture">等待启动</p><p id="last" class="hint">暂无采集</p><div class="actions"><button id="start">启动采集</button><button id="pause" class="secondary">暂停截图</button><button id="capture-now" class="secondary">截取主屏</button><button id="sync" class="secondary">恢复续传</button></div><p class="hint">窗口关闭后进程停止；已缓存事件保留，下次启动继续上传。主屏会包含当前可见应用，请按需暂停。</p></section>
+<form id="note" class="panel"><label for="text">写一条速记</label><textarea id="text" name="text" maxlength="16000" placeholder="此刻值得记录的事…" required></textarea><button type="submit">保存到本地队列</button></form>
+<p id="message" role="status" aria-live="polite"></p></main><script src="app.js"></script></body></html>
