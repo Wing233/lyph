@@ -66,6 +66,9 @@ export default async function Home() {
                 <Link href="/documents" data-event="nav.documents.open">
                   翻翻文档 ↗
                 </Link>
+                <Link href="/download" data-event="nav.download.open">
+                  下载桌面端 ↗
+                </Link>
               </div>
             </div>
           </div>

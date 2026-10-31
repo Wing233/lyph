@@ -25,6 +25,7 @@ export function PublicShell({
             日记
           </Link>
           <Link href="/projects">项目</Link>
+          <Link href="/download">下载</Link>
           <Link href="/collection">收藏</Link>
         </nav>
       </header>
