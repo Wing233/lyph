@@ -17,6 +17,7 @@ class Settings:
     frontend_origin: str = field(default_factory=lambda: os.getenv("LYPH_FRONTEND_ORIGIN", "http://localhost:3000").rstrip("/"))
     secure_cookies: bool = field(default_factory=lambda: _bool("SECURE_COOKIES", True))
     minio_endpoint: str = field(default_factory=lambda: os.getenv("LYPH_MINIO_ENDPOINT", "minio:9000"))
+    minio_region: str = field(default_factory=lambda: os.getenv("LYPH_MINIO_REGION", ""))
     minio_access_key: str = field(default_factory=lambda: os.getenv("LYPH_MINIO_ACCESS_KEY", ""))
     minio_secret_key: str = field(default_factory=lambda: os.getenv("LYPH_MINIO_SECRET_KEY", ""))
     minio_bucket: str = field(default_factory=lambda: os.getenv("LYPH_MINIO_BUCKET", "lyph-private"))

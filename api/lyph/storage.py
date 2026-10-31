@@ -29,6 +29,7 @@ def _client():
         raise HTTPException(503, "Object storage is not configured")
     return Minio(settings.minio_endpoint, access_key=settings.minio_access_key,
                  secret_key=settings.minio_secret_key, secure=settings.minio_secure,
+                 region=settings.minio_region or None,
                  http_client=PoolManager(timeout=Timeout(connect=3, read=20), retries=0))
 
 

@@ -28,8 +28,6 @@ services:
     environment:
       LYPH_DATA_DIR: /data
       LYPH_DATABASE_PATH: /data/lyph.sqlite3
-      LYPH_MINIO_ENDPOINT: minio:9000
-      LYPH_MINIO_SECURE: "false"
       LYPH_SOURCE_DIR: /source/web
       LYPH_UI_DIR: /ui
       FORWARDED_ALLOW_IPS: ${LYPH_PROXY_IP:-172.30.91.254}

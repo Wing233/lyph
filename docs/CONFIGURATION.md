@@ -31,6 +31,7 @@ uv run --project api lyph init-config \
 | `LYPH_FRONTEND_ORIGIN` | 浏览器 origin，必须与访问地址一致 |
 | `LYPH_SECURE_COOKIES` | 生产 `true`，本地 HTTP `false` |
 | `LYPH_MINIO_ENDPOINT` | 如 `minio:9000` |
+| `LYPH_MINIO_REGION` | 可选；B2/R2 填对应 region（如 `us-west-004`） |
 | `LYPH_MINIO_ACCESS_KEY` | MinIO access key |
 | `LYPH_MINIO_SECRET_KEY` | MinIO secret key |
 | `LYPH_MINIO_BUCKET` | 私有 bucket 名 |
