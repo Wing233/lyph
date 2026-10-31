@@ -217,8 +217,11 @@ uv run --project api lyph init-config \
 ### 2. 构建并启动
 
 ```bash
-docker compose build minio api web
-docker compose up -d
+# 本地 MinIO（默认 .env.example）
+docker compose --profile local-minio up -d --build
+
+# 或者：使用外部 S3/B2（先把 .env 的 LYPH_MINIO_* 指向 B2）
+# docker compose up -d --build
 ```
 
 打开：
@@ -442,8 +445,9 @@ uv run --project api --env-file .env lyph restore backups/<file>.lyph.enc
 
 ```bash
 git pull
-docker compose build minio api web
+docker compose build api web
 docker compose up -d
+# 本地 MinIO 用户：加 --profile local-minio
 ```
 
 升级前备份。SQLite 迁移只做增量建表/加列，不自动删除数据。

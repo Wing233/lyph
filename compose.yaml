@@ -2,6 +2,7 @@ name: lyph
 services:
   minio:
     image: lyph-minio:7aac2a2c5b7c
+    profiles: ["local-minio"]
     build:
       context: .
       dockerfile: deploy/Minio.Dockerfile
@@ -32,8 +33,6 @@ services:
       LYPH_UI_DIR: /ui
       FORWARDED_ALLOW_IPS: ${LYPH_PROXY_IP:-172.30.91.254}
     volumes: ["business:/data", "ui:/ui", "./web:/source/web:ro"]
-    depends_on:
-      minio: {condition: service_healthy}
     networks:
       private: {aliases: [api-internal]}
       egress: {}

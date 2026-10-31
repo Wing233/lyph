@@ -19,8 +19,11 @@ Nginx (compose)
 
 ```bash
 cp .env.example .env      # 或使用 init-config
-docker compose build minio api web
-docker compose up -d
+# 本地 MinIO
+docker compose --profile local-minio up -d --build
+
+# 或外部 S3/B2
+# docker compose up -d --build
 ```
 
 默认：
@@ -117,8 +120,9 @@ uv run --project api --env-file .env lyph restore backups/<file>.lyph.enc
 
 ```bash
 git pull
-docker compose build minio api web
+docker compose build api web
 docker compose up -d
+# 本地 MinIO 用户：加 --profile local-minio
 ```
 
 升级前备份。数据库只做增量迁移，不自动删列。

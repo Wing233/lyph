@@ -142,8 +142,11 @@ There is **no default password, API key, or demo model**.
 ### 2. Build and start
 
 ```bash
-docker compose build minio api web
-docker compose up -d
+# Local MinIO (default .env.example)
+docker compose --profile local-minio up -d --build
+
+# Or external S3/B2 (point LYPH_MINIO_* at B2 first)
+# docker compose up -d --build
 ```
 
 Open:
@@ -326,8 +329,9 @@ Upgrade:
 
 ```bash
 git pull
-docker compose build minio api web
+docker compose build api web
 docker compose up -d
+# local MinIO users: add --profile local-minio
 ```
 
 See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for reverse proxy, resources, and the optional Docker-socket UI preview warning.
