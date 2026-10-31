@@ -32,6 +32,17 @@ docker compose up -d
 
 打开 `http://127.0.0.1:8080/`，后台 `/admin/login`。
 
+### 使用 GHCR 预构建镜像
+
+main 分支和 `v*` tag 会自动构建：
+
+```bash
+docker pull ghcr.io/wing233/lyph-api:latest
+docker pull ghcr.io/wing233/lyph-web:latest
+```
+
+在 `compose.yaml` 里把 `build:` 去掉，并把 `image:` 改成上面的地址即可。MinIO 仍建议按 `deploy/Minio.Dockerfile` 固定源码构建，或使用你信任的 MinIO 镜像。
+
 ## TLS
 
 首次证书：

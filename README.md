@@ -16,6 +16,7 @@
 [![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)](https://docs.docker.com/compose/)
 [![License](https://img.shields.io/badge/License-MIT-2dd4bf.svg)](LICENSE)
 [![CI](https://github.com/Wing233/lyph/actions/workflows/ci.yml/badge.svg)](https://github.com/Wing233/lyph/actions/workflows/ci.yml)
+[![GHCR](https://img.shields.io/badge/GHCR-lyph--api%20%2F%20lyph--web-2496ED?logo=github)](https://github.com/Wing233/lyph/pkgs/container/lyph-api)
 
 [快速开始](#快速开始) · [架构](#架构) · [配置](#配置) · [部署](#部署) · [隐私](#隐私与数据) · [开发](#开发)
 
@@ -107,6 +108,25 @@ Docker Compose + Nginx + MinIO + SQLite
 </td>
 </tr>
 </table>
+
+---
+
+## 界面
+
+<div align="center">
+  <img src="docs/assets/demo.gif" alt="LYPH demo" width="72%" />
+</div>
+
+<div align="center">
+  <img src="docs/assets/screenshots/home.png" alt="Home" width="49%" />
+  <img src="docs/assets/screenshots/chat.png" alt="Chat" width="49%" />
+  <img src="docs/assets/screenshots/admin-dashboard.png" alt="Admin" width="49%" />
+  <img src="docs/assets/screenshots/collector.png" alt="Collector" width="49%" />
+</div>
+
+<p align="center"><img src="docs/assets/screenshots/blog.png" alt="Blog" width="100%" /></p>
+
+> 截图使用 E2E 测试夹具的演示数据，不含真实访客信息。
 
 ---
 
@@ -381,6 +401,15 @@ LYPH 会处理访客 IP、聊天正文、截图和审计日志。默认保留策
 ```bash
 docker compose up -d
 ```
+
+预构建镜像：
+
+```bash
+docker pull ghcr.io/wing233/lyph-api:latest
+docker pull ghcr.io/wing233/lyph-web:latest
+```
+
+去掉 `compose.yaml` 的 `build:`，把 `image:` 指向上面的 tag 即可。MinIO 仍建议按 `deploy/Minio.Dockerfile` 固定源码构建，或使用你信任的 MinIO 镜像。
 
 ### TLS
 

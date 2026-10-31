@@ -14,6 +14,7 @@
 [![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)](https://docs.docker.com/compose/)
 [![License](https://img.shields.io/badge/License-MIT-2dd4bf.svg)](LICENSE)
 [![CI](https://github.com/Wing233/lyph/actions/workflows/ci.yml/badge.svg)](https://github.com/Wing233/lyph/actions/workflows/ci.yml)
+[![GHCR](https://img.shields.io/badge/GHCR-lyph--api%20%2F%20lyph--web-2496ED?logo=github)](https://github.com/Wing233/lyph/pkgs/container/lyph-api)
 
 [Quick start](#quick-start) · [Architecture](#architecture) · [Configuration](#configuration) · [Deployment](#deployment) · [Privacy](#privacy) · [Development](#development)
 
@@ -62,6 +63,25 @@ Good fit for:
 | Collectors | Rust core + SQLite queue; Windows Tauri; Linux daemon/TUI; PWA |
 | Storage | MinIO private objects; SQLite WAL; signed/controlled downloads |
 | Deploy | Docker Compose, Nginx, optional ACME/TLS, backup/restore CLI |
+
+---
+
+## Screenshots
+
+<div align="center">
+  <img src="docs/assets/demo.gif" alt="LYPH demo" width="72%" />
+</div>
+
+<div align="center">
+  <img src="docs/assets/screenshots/home.png" alt="Home" width="49%" />
+  <img src="docs/assets/screenshots/chat.png" alt="Chat" width="49%" />
+  <img src="docs/assets/screenshots/admin-dashboard.png" alt="Admin" width="49%" />
+  <img src="docs/assets/screenshots/collector.png" alt="Collector" width="49%" />
+</div>
+
+<p align="center"><img src="docs/assets/screenshots/blog.png" alt="Blog" width="100%" /></p>
+
+> Screenshots use E2E fixture demo data; no real visitor information.
 
 ---
 
@@ -278,6 +298,15 @@ Minimal HTTP:
 ```bash
 docker compose up -d
 ```
+
+Prebuilt images:
+
+```bash
+docker pull ghcr.io/wing233/lyph-api:latest
+docker pull ghcr.io/wing233/lyph-web:latest
+```
+
+Remove `build:` from `compose.yaml` and point `image:` at those tags. MinIO should still be built from `deploy/Minio.Dockerfile` or a trusted MinIO image.
 
 TLS:
 
