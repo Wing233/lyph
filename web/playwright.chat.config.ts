@@ -8,6 +8,6 @@ export default defineConfig({
   webServer: {
     command: `"${process.execPath}" node_modules/next/dist/bin/next dev --hostname 127.0.0.1 --port 3011`,
     url: "http://127.0.0.1:3011", timeout: 180000, reuseExistingServer: false,
-    env: { LYPH_CHAT_FIRST_ENABLED: "true", NEXT_TELEMETRY_DISABLED: "1", NODE_OPTIONS: "--max-old-space-size=512" },
+    env: { LYPH_CHAT_FIRST_ENABLED: "true", NEXT_TELEMETRY_DISABLED: "1", NODE_OPTIONS: "--max-old-space-size=2048" },
   },
 });
