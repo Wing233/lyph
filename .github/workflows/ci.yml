@@ -72,13 +72,18 @@ jobs:
       - name: Install Chromium
         working-directory: web
         run: npx playwright install --with-deps chromium
-      - name: Browser flows
+      - name: Chat-first browser flows
+        working-directory: web
+        # Chat-first UI replaces the legacy home, so it runs with its own
+        # dev-server config and mocked API fixtures.
+        run: npx playwright test tests/chat-first.spec.ts --config=playwright.chat.config.ts
+      - name: Product browser flows
         working-directory: web
         env:
           LYPH_TEST_PYTHON: ${{ github.workspace }}/api/.venv/bin/python
         # Login/auth, permission revocation, chat settlement/recovery,
-        # publish isolation and version rollback.
-        run: npx playwright test tests/product.spec.ts tests/chat-first.spec.ts
+        # publish isolation and version rollback against the legacy home.
+        run: npx playwright test tests/product.spec.ts
 
   collectors:
     runs-on: ubuntu-latest
