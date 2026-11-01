@@ -13,7 +13,7 @@ sys.path.insert(0,str(root / "api"))
 temporary=tempfile.TemporaryDirectory(prefix="lyph-e2e-")
 os.environ.update(LYPH_DATA_DIR=temporary.name,LYPH_SECRET_KEY="e2e-isolated-secret-" * 4,
     LYPH_FRONTEND_ORIGIN="http://127.0.0.1:3011",LYPH_SECURE_COOKIES="false",
-    LYPH_SCHEDULER_ENABLED="false",LYPH_CHAT_IP_LIMIT="1000")
+    LYPH_SCHEDULER_ENABLED="false",LYPH_CHAT_IP_LIMIT="1000",LYPH_CHAT_UNLIMITED="false")
 from argon2 import PasswordHasher
 os.environ["LYPH_OWNER_PASSWORD_HASH"]=PasswordHasher().hash("e2e-owner-password")
 from lyph import storage, models_routes

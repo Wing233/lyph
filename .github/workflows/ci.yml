@@ -5,9 +5,16 @@ on:
     branches: [main]
   pull_request:
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   api:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      LYPH_CHAT_UNLIMITED: "false"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -19,10 +26,13 @@ jobs:
         run: uv sync --frozen --extra test
       - name: Test
         working-directory: api
-        run: uv run pytest tests/test_core.py tests/test_chat_tools.py
+        # All offline tests. The real-MinIO test self-skips unless
+        # LYPH_TEST_MINIO_* is configured.
+        run: uv run pytest tests
 
   web:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -37,8 +47,42 @@ jobs:
         working-directory: web
         run: npm run typecheck
 
+  web-e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      LYPH_CHAT_UNLIMITED: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: astral-sh/setup-uv@v5
+      - name: Install API fixture deps
+        working-directory: api
+        run: uv sync --frozen --extra test
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Install web deps
+        working-directory: web
+        run: npm ci
+      - name: Install Chromium
+        working-directory: web
+        run: npx playwright install --with-deps chromium
+      - name: Browser flows
+        working-directory: web
+        env:
+          LYPH_TEST_PYTHON: ${{ github.workspace }}/api/.venv/bin/python
+        # Login/auth, permission revocation, chat settlement/recovery,
+        # publish isolation and version rollback.
+        run: npx playwright test tests/product.spec.ts tests/chat-first.spec.ts
+
   collectors:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
