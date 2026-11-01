@@ -140,7 +140,7 @@ def test_cleanup_removes_only_expired_bodies_events_audit_and_screenshots(backup
     with db.transaction() as conn:
         conn.execute("INSERT INTO chat_requests(id,visitor_id,conversation_id,message,answer,status,quota_kind,created_at) VALUES (?,?,?,?,?,?,?,?)", ("old", ident["id"], "c", "old question", "old answer", "completed", "free", old))
         conn.execute("INSERT INTO chat_requests(id,visitor_id,conversation_id,message,status,quota_kind,created_at) VALUES (?,?,?,?,?,?,?)", ("inflight", ident["id"], "c", "preserve in flight", "running", "free", old))
-        conn.execute("INSERT INTO visit_events VALUES (?,?,?,?,?,?,?,?,?)", ("old-event", ident["id"], "s", "page_view", "/", None, "unknown", "direct", old))
+        conn.execute("INSERT INTO visit_events(occurrence_id,visitor_id,session_id,event_name,path,content_id,device,source,created_at,ip) VALUES (?,?,?,?,?,?,?,?,?,?)", ("old-event", ident["id"], "s", "page_view", "/", None, "unknown", "direct", old, ""))
         conn.execute("INSERT INTO audit_log(id,action,details_json,created_at) VALUES (?,?,?,?)", ("old-audit", "test", "{}", (datetime.now(timezone.utc) - timedelta(days=181)).isoformat()))
     result = maintenance.cleanup()
     assert result["chat_bodies"] == 1 and result["visit_events"] == 1 and result["audit"] == 1
