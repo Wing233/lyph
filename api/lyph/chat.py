@@ -362,7 +362,7 @@ async def model_answer(config, question, history, request_id, attempt_id, check_
         from .chat_agent import PUBLIC_FREE_INSTRUCTIONS, run
         filters = context.get("arguments", {}) if context.get("intent") == "companies" else {}
         outbound = question + json.dumps(filters, ensure_ascii=False)
-        sensitive = r"(?i)(sk-[a-z0-9_-]{12,}|(?:api[_ -]?key|password|token|密码)\s*[:：=]|(?<!\d)1[3-9]\d{9}(?!\d)|[\w.+-]+@[\w.-]+\.[a-z]{2,})"
+        sensitive = r"(?i)(sk-[a-z0-9_-]{12,}|(?:api|test|synthetic|private|secret|access|auth)[-_](?:key|token|secret|password)[-_][a-z0-9_-]{4,}|(?:api[_ -]?key|password|token|密码)\s*[:：=]|(?<!\d)1[3-9]\d{9}(?!\d)|[\w.+-]+@[\w.-]+\.[a-z]{2,})"
         if len(question) > 600 or re.search(sensitive, outbound):
             raise HTTPException(422, "免费测试仅接受简短的公开企业问题，请移除个人或敏感信息；本次未扣次")
         if not re.search(r"企业|公司|岗位|招聘|行业|分布", question):
