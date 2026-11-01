@@ -34,6 +34,16 @@
 | 当前版本 24 小时容量 | 未验收 | 旧版报告不能复制到当前版本 |
 | AI 改 UI 生产发布 | 未验收 / 关闭 | 候选、隔离预览、shadow 切换/回滚已测；生产三轮未完成 |
 
+## CI 覆盖的关键路径
+
+| 路径 | 离线测试 | 浏览器流程 |
+|---|---|---|
+| 登录、未授权访问、CSRF、退出 | `test_core.py`、`test_intelligence.py` | `product.spec.ts` |
+| 权限撤销、私密内容、RAG 授权 | `test_core.py`、`test_chat_orchestration.py`、`test_chat_views.py` | `product.spec.ts` |
+| 聊天结算、并发合并、取消/断流恢复 | `test_chat_orchestration.py`、`test_intelligence.py` | `chat-first.spec.ts`、`product.spec.ts` |
+| 任务/重启恢复、额度预占释放 | `test_chat_agent.py`、`test_ui.py`、`test_heavy_pause.py` | `product.spec.ts` |
+| 发布隔离、版本恢复、备份回滚 | `test_core.py`、`test_maintenance.py`、`test_ui.py` | `product.spec.ts` |
+
 ## 证据原则
 
 - 单元测试通过不等于真实模型、真实 MinIO、真实浏览器或真实 VPS 通过。
