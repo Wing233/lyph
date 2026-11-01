@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- CI 运行全部离线 API 测试，并增加登录/权限、聊天结算/恢复、发布隔离和版本回滚的 Playwright 浏览器流程。
+- README 增加稳定/实验/未验收状态表，新增 `docs/STATUS.md` 说明验收边界。
+
 ## 0.1.0 — 2026-10-30
 
 首个公开版本。

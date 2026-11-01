@@ -50,6 +50,24 @@ Good fit for:
 
 ---
 
+## Project status
+
+Current public version: **0.1.0** (2026-10-30). “Code exists” is not the same as “accepted”; see [docs/STATUS.md](docs/STATUS.md) for boundaries and [CHANGELOG.md](CHANGELOG.md) for history.
+
+| Capability | Status | Notes |
+|---|---|---|
+| Public site / admin / publish snapshots / version restore | Stable | Offline tests plus browser regressions |
+| AI chat core: SSE, RAG, quota, exact cache, cancel/resume, MCP/AG-UI | Stable | Semantic cache is not in the stable set |
+| Chat-first UI / rich views / public company snapshots | Stable | Deployed and verified; legacy routes remain |
+| PWA collector, Linux daemon/TUI, backup/restore | Stable | Restore requires an offline API |
+| Windows Tauri, Wayland, iOS devices | Experimental / unverified | Code exists; device acceptance is incomplete |
+| Free-model JSON action protocol | Experimental | Deployment-specific; no capacity or SLA promise |
+| Semantic cache | Disabled | Code retained, off by default |
+| 24-hour capacity for the current version | Unverified | Old reports do not apply |
+| Production AI UI publishing | Unverified / disabled | Candidate, preview and rollback tested; production rounds pending |
+
+---
+
 ## Features
 
 | Area | Highlights |
