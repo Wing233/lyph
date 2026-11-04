@@ -6,6 +6,42 @@ export class ApiError extends Error {
     super(message);
   }
 }
+/** 日报 note 末尾 WORKLOG_TL_V1 哨兵载荷，全部为本机已脱敏文字。 */
+export type WorklogPoint = { t: string; app: string; l: string };
+export type WorklogAppTop = { app: string; seconds: number };
+export type WorklogBrowserCategory = { category: string; visits: number };
+export type WorklogStats = {
+  active_human: number | string;
+  git_commits: number;
+  ai_sessions: number;
+  ai_messages: number;
+  files_changed: number;
+  app_top: WorklogAppTop[];
+  browser_categories: WorklogBrowserCategory[];
+};
+export type WorklogTL = {
+  v: number;
+  day: string;
+  pts: WorklogPoint[];
+  hl: string;
+  stats: WorklogStats;
+};
+/** 类型守卫：把 JSON.parse 的 unknown 收窄为 WORKLOG_TL_V1 载荷。 */
+export function isWorklogTL(value: unknown): value is WorklogTL {
+  if (!value || typeof value !== "object") return false;
+  const w = value as Record<string, unknown>;
+  const s = w.stats;
+  return (
+    w.v === 1 &&
+    typeof w.day === "string" &&
+    Array.isArray(w.pts) &&
+    typeof w.hl === "string" &&
+    !!s &&
+    typeof s === "object" &&
+    Array.isArray((s as Record<string, unknown>).app_top) &&
+    Array.isArray((s as Record<string, unknown>).browser_categories)
+  );
+}
 export type Content = {
   id: string;
   type: "blog" | "document" | "manual" | "automatic";
@@ -20,6 +56,8 @@ export type Content = {
   revision: number;
   published?: boolean;
   published_version_id?: string;
+  /** 可选：前端从 markdown 的 WORKLOG_TL_V1 哨兵解析后回填，API 不直接返回。 */
+  worklog?: WorklogTL | null;
   [key: string]: unknown;
 };
 export type NavigationItem = {

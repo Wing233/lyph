@@ -2066,6 +2066,128 @@ select {
   border: 1px solid var(--line);
   padding: 10px 15px;
 }
+/* 日报详情页：今日小记 / 时间线 / 统计（WORKLOG_TL_V1 哨兵渲染） */
+.entry-extras {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin: 48px 0 0;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.entry-extras > * {
+  min-width: 0;
+}
+.entry-extras h2 {
+  font: 400 21px var(--serif);
+  margin: 0 0 16px;
+}
+.entry-extras h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 20px 0 8px;
+}
+.entry-highlight {
+  grid-column: 1 / -1;
+  border-left: 2px solid var(--accent);
+  padding-left: 24px;
+  color: var(--muted);
+}
+.entry-highlight p {
+  margin: 0;
+  line-height: 2;
+}
+.entry-timeline,
+.entry-stats {
+  border: 1px solid var(--line);
+  padding: 10px 15px;
+}
+.entry-timeline summary {
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--accent-text);
+}
+.entry-timeline summary span {
+  color: var(--muted);
+  font-size: 11px;
+  margin-left: 8px;
+}
+.entry-timeline ol {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  max-height: 360px;
+  overflow: auto;
+}
+.entry-timeline li {
+  display: grid;
+  grid-template-columns: 84px minmax(90px, 1fr) 2fr;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+  padding: 10px 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.entry-timeline-time {
+  font-family: var(--mono);
+  color: var(--muted);
+}
+.entry-timeline-app {
+  color: var(--accent-text);
+  overflow-wrap: anywhere;
+}
+.entry-timeline-line {
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.entry-stats-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 16px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.entry-stats-list b {
+  color: var(--ink);
+  font-weight: 600;
+  margin-left: 6px;
+}
+.entry-stats-group ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.entry-stats-group li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid var(--line);
+  padding: 8px 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.entry-stats-group li span:last-child {
+  font-family: var(--mono);
+  color: var(--ink);
+}
+@media (max-width: 767px) {
+  .entry-extras {
+    grid-template-columns: 1fr;
+  }
+  .entry-timeline li {
+    grid-template-columns: 72px 1fr;
+  }
+  .entry-timeline-line {
+    grid-column: 1 / -1;
+  }
+  .entry-stats-list {
+    grid-template-columns: 1fr;
+  }
+}
 .home {
   position: relative;
 }
