@@ -1,0 +1,6 @@
+[request]
+method = "GET"
+path = "/echo/%E4%B8%AD%F0%9F%98%80?x=%2f&x=+&x=%00"
+
+[response]
+status = 200

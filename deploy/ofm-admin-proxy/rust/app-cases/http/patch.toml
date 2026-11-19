@@ -1,0 +1,7 @@
+[request]
+method = "PATCH"
+path = "/echo"
+body = "{}"
+
+[response]
+status = 200

@@ -1,0 +1,12 @@
+[request]
+method = "GET"
+path = "/range"
+
+[request.headers]
+Range = "bytes=2-4"
+
+[response]
+status = 206
+
+[response.headers]
+content-range = "bytes 2-4/10"

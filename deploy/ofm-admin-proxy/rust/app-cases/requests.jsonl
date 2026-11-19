@@ -1,0 +1,27 @@
+{"name":"health","path":"/healthz"}
+{"name":"health-query","path":"/healthz?probe=1"}
+{"name":"health-head","method":"HEAD","path":"/healthz"}
+{"name":"health-post","method":"POST","path":"/healthz","body":"ignored"}
+{"name":"root","path":"/"}
+{"name":"head","method":"HEAD","path":"/echo"}
+{"name":"escaped-target","path":"/echo/%E4%B8%AD%F0%9F%98%80?x=%2f&x=+&x=%00"}
+{"name":"host-and-credentials","path":"/echo","headers":{"Authorization":"Bearer client","Cookie":"browser=secret","Origin":"https://example.invalid","Referer":"https://example.invalid/admin/page","X-Custom":"sample"}}
+{"name":"empty-origin-and-referer","path":"/echo","headers":{"Origin":"","Referer":""}}
+{"name":"body-get","path":"/echo","body":"get body"}
+{"name":"body-post","method":"POST","path":"/echo","body":"中文😀\r\n \u0000","headers":{"Content-Type":"application/octet-stream"}}
+{"name":"body-empty","method":"POST","path":"/echo"}
+{"name":"options","method":"OPTIONS","path":"/echo"}
+{"name":"put","method":"PUT","path":"/echo","body":"replacement"}
+{"name":"patch","method":"PATCH","path":"/echo","body":"{}"}
+{"name":"delete","method":"DELETE","path":"/echo"}
+{"name":"propagate-redirect","path":"/redirect"}
+{"name":"propagate-forbidden","path":"/denied"}
+{"name":"propagate-not-found","path":"/missing"}
+{"name":"propagate-empty","path":"/empty"}
+{"name":"propagate-not-modified","path":"/unchanged"}
+{"name":"propagate-range","path":"/range","headers":{"Range":"bytes=2-4"}}
+{"name":"stream-media","path":"/stream"}
+{"name":"filter-response-headers","path":"/headers"}
+{"name":"refresh-once","path":"/retry"}
+{"name":"propagate-second-401","path":"/always-401"}
+{"name":"fail-upstream","path":"/drop"}

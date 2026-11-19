@@ -452,6 +452,10 @@ docker compose -f compose.yaml -f compose.tls.yaml up -d
 
 如果你在外层再放一层 Nginx/Caddy，请把 `LYPH_BIND_ADDRESS` 改成 `127.0.0.1`，并只暴露外层代理。
 
+### OFM 管理侧车
+
+已部署 Our Free Model 的环境可通过 [OFM 管理侧车](deploy/ofm-admin-proxy/README.md) 选用 Rust 代理。
+
 ### 备份
 
 ```bash

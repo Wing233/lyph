@@ -1,0 +1,6 @@
+[request]
+method = "DELETE"
+path = "/echo"
+
+[response]
+status = 200

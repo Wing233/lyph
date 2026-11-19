@@ -1,0 +1,7 @@
+[request]
+method = "PUT"
+path = "/echo"
+body = "replacement"
+
+[response]
+status = 200

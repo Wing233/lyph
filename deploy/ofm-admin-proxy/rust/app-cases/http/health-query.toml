@@ -1,0 +1,10 @@
+[request]
+method = "GET"
+path = "/healthz?probe=1"
+
+[response]
+status = 200
+
+[response.headers]
+cache-control = "no-store"
+content-type = "text/plain; charset=utf-8"

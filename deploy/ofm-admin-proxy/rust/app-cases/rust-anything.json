@@ -1,0 +1,10 @@
+{
+  "schema": "rust-anything/app-cases@1",
+  "name": "reference-port",
+  "run": [
+    "node",
+    "./rust/app-cases/reference-port.mjs"
+  ],
+  "timeout_secs": 30,
+  "http": {}
+}

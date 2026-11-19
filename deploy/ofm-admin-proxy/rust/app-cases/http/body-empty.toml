@@ -1,0 +1,6 @@
+[request]
+method = "POST"
+path = "/echo"
+
+[response]
+status = 200

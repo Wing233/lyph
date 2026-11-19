@@ -1,0 +1,6 @@
+[request]
+method = "GET"
+path = "/denied"
+
+[response]
+status = 403

@@ -1,0 +1,6 @@
+[request]
+method = "GET"
+path = "/"
+
+[response]
+status = 200

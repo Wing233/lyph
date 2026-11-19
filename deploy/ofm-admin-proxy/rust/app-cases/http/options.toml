@@ -1,0 +1,6 @@
+[request]
+method = "OPTIONS"
+path = "/echo"
+
+[response]
+status = 200

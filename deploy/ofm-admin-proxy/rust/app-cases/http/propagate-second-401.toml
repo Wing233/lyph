@@ -1,0 +1,9 @@
+[request]
+method = "GET"
+path = "/always-401"
+
+[response]
+status = 401
+
+[response.headers]
+www-authenticate = 'Basic realm="fixture"'

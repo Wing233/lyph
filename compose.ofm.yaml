@@ -1,0 +1,23 @@
+services:
+  ofm-admin-proxy:
+    image: lyph-ofm-admin-proxy:0.1.0
+    build:
+      context: ./deploy/ofm-admin-proxy/rust/app
+    network_mode: "container:${OFM_CONTAINER_NAME:-our-free-model}"
+    environment:
+      OFM_PROXY_ALLOW: "${LYPH_PROXY_IP:-172.30.91.254},127.0.0.1"
+    volumes:
+      - type: bind
+        source: "${OFM_DATA_DIR:?请指定 OFM 数据目录}"
+        target: /data
+        read_only: true
+    read_only: true
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=8m"]
+    mem_limit: 64m
+    cpus: 0.1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:18905/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3

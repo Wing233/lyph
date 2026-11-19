@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- 增加可选的 Rust OFM 管理侧车和 HTTP 差分验证，支持在私网代理已有 OFM 控制台。
+
 - CI 运行全部离线 API 测试，并增加登录/权限、聊天结算/恢复、发布隔离和版本回滚的 Playwright 浏览器流程。
 - README 增加稳定/实验/未验收状态表，新增 `docs/STATUS.md` 说明验收边界。
 - 免费模型输入过滤拒绝裸合成 key（如 `test-key-not-real`），避免把疑似密钥发给匿名公共推理。

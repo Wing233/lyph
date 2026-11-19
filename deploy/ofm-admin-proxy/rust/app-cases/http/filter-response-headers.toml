@@ -1,0 +1,9 @@
+[request]
+method = "GET"
+path = "/headers"
+
+[response]
+status = 202
+
+[response.headers]
+x-duplicate = "one, two"

@@ -1,0 +1,12 @@
+[request]
+method = "POST"
+path = "/echo"
+body = """
+中文😀\r
+ \u0000"""
+
+[request.headers]
+Content-Type = "application/octet-stream"
+
+[response]
+status = 200
